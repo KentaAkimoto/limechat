@@ -584,6 +584,31 @@
     }
 }
 
+- (IBAction)onSearchWebNetSlang:(id)sender {
+    LogView* web = [self currentWebView];
+    if (!web) return;
+    NSString* s = [web selection];
+    if (s.length) {
+        s = [NSString stringWithFormat:@"ネット スラング %@",s];
+        s = [s gtm_stringByEscapingForURLArgument];
+        NSString* urlStr = [NSString stringWithFormat:@"http://www.google.com/search?ie=UTF-8&q=%@", s];
+        [URLOpener open:[NSURL URLWithString:urlStr]];
+        
+        [self onSearchWebNiconicoPedia:nil];
+    }
+}
+
+- (IBAction)onSearchWebNiconicoPedia:(id)sender {
+    LogView* web = [self currentWebView];
+    if (!web) return;
+    NSString* s = [web selection];
+    if (s.length) {
+        s = [s gtm_stringByEscapingForURLArgument];
+        NSString* urlStr = [NSString stringWithFormat:@"http://dic.nicovideo.jp/a/%@", s];
+        [URLOpener open:[NSURL URLWithString:urlStr]];
+    }
+}
+
 - (void)onCopyLogAsHtml:(id)sender
 {
     IRCTreeItem* sel = _world.selected;

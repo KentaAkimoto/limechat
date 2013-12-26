@@ -56,6 +56,8 @@
 - (void)onUseSelectionForFind:(id)sender;
 - (void)onPasteMyAddress:(id)sender;
 - (void)onSearchWeb:(id)sender;
+- (IBAction)onSearchWebNetSlang:(id)sender;
+- (IBAction)onSearchWebNiconicoPedia:(id)sender;
 - (void)onCopyLogAsHtml:(id)sender;
 - (void)onCopyConsoleLogAsHtml:(id)sender;
 
