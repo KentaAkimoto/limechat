@@ -368,6 +368,16 @@
 {
     NSString* s = [_text stringValue];
     if (s.length) {
+        
+        if ([command isEqualToString:PRIVMSG]) {
+            SnapController *snapController = [SnapController sharedInstance];
+            if (snapController.isRunning) {
+                [snapController takePicture:nil];
+                NSString *result = [GyazoUploader upload:@"/Users/Shared/image.tiff"];
+                s = [NSString stringWithFormat:@"%@ %@", s, result];
+            }
+        }
+        
         if ([_world inputText:s command:command]) {
             [_inputHistory add:s];
             [_text setStringValue:@""];

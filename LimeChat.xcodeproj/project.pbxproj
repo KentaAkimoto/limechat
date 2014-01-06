@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		2735CC1D17C1B6EC00E0AC11 /* NSDateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2735CC1C17C1B6EC00E0AC11 /* NSDateHelper.m */; };
+		377630E2186F32580087964D /* GyazoUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = 377630E1186F32580087964D /* GyazoUploader.m */; };
+		377630E5186F33210087964D /* script in Resources */ = {isa = PBXBuildFile; fileRef = 377630E4186F33210087964D /* script */; };
+		377A05AD186E7D8200BC6E78 /* SnapController.m in Sources */ = {isa = PBXBuildFile; fileRef = 377A05AC186E7D8200BC6E78 /* SnapController.m */; };
+		377A05AF186E7ED100BC6E78 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 377A05AE186E7ED100BC6E78 /* QuartzCore.framework */; };
+		377A05B1186E7ED600BC6E78 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 377A05B0186E7ED600BC6E78 /* QTKit.framework */; };
 		78000B561817D79D001935E2 /* LCFSystemInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 781A35CF180B8A8D009E88FC /* LCFSystemInfo.m */; };
 		780844D2134CD34B003BB84C /* ImageDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 780844D1134CD34B003BB84C /* ImageDownloadManager.m */; };
 		780844D3134CD34B003BB84C /* ImageDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 780844D1134CD34B003BB84C /* ImageDownloadManager.m */; };
@@ -353,6 +358,13 @@
 		2735CC1C17C1B6EC00E0AC11 /* NSDateHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDateHelper.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		377630E0186F32580087964D /* GyazoUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GyazoUploader.h; sourceTree = "<group>"; };
+		377630E1186F32580087964D /* GyazoUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GyazoUploader.m; sourceTree = "<group>"; };
+		377630E4186F33210087964D /* script */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = script; sourceTree = "<group>"; };
+		377A05AB186E7D8200BC6E78 /* SnapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnapController.h; sourceTree = "<group>"; };
+		377A05AC186E7D8200BC6E78 /* SnapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnapController.m; sourceTree = "<group>"; };
+		377A05AE186E7ED100BC6E78 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		377A05B0186E7ED600BC6E78 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = System/Library/Frameworks/QTKit.framework; sourceTree = SDKROOT; };
 		780253C20C09525900C170D4 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = /System/Library/Frameworks/CoreServices.framework; sourceTree = "<absolute>"; };
 		780844D0134CD34B003BB84C /* ImageDownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageDownloadManager.h; sourceTree = "<group>"; };
 		780844D1134CD34B003BB84C /* ImageDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageDownloadManager.m; sourceTree = "<group>"; };
@@ -640,6 +652,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				377A05B1186E7ED600BC6E78 /* QTKit.framework in Frameworks */,
+				377A05AF186E7ED100BC6E78 /* QuartzCore.framework in Frameworks */,
 				78E572390C1C30BA00BDF7EC /* Cocoa.framework in Frameworks */,
 				78E5723B0C1C30BA00BDF7EC /* WebKit.framework in Frameworks */,
 				78E5723C0C1C30BA00BDF7EC /* Carbon.framework in Frameworks */,
@@ -655,6 +669,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				377A05AA186E7D5B00BC6E78 /* Snap */,
 				78A8C0C111737F660044E7A1 /* Controllers */,
 				78A8C10C11737F660044E7A1 /* IRC */,
 				78A8C0CA11737F660044E7A1 /* Dialogs */,
@@ -690,6 +705,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				377630E3186F33210087964D /* Gyazo */,
 				785B006B15C411E1009A2E36 /* Normal */,
 				785B006815C411D7009A2E36 /* AppStore */,
 				784BBE8F1085BC950080898B /* images */,
@@ -718,6 +734,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				377A05B0186E7ED600BC6E78 /* QTKit.framework */,
+				377A05AE186E7ED100BC6E78 /* QuartzCore.framework */,
 				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
 				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
@@ -728,6 +746,27 @@
 				78FA9F641085AA1400001F13 /* Sparkle.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		377630E3186F33210087964D /* Gyazo */ = {
+			isa = PBXGroup;
+			children = (
+				377630E4186F33210087964D /* script */,
+			);
+			name = Gyazo;
+			path = Resources/Gyazo;
+			sourceTree = "<group>";
+		};
+		377A05AA186E7D5B00BC6E78 /* Snap */ = {
+			isa = PBXGroup;
+			children = (
+				377A05AB186E7D8200BC6E78 /* SnapController.h */,
+				377A05AC186E7D8200BC6E78 /* SnapController.m */,
+				377630E0186F32580087964D /* GyazoUploader.h */,
+				377630E1186F32580087964D /* GyazoUploader.m */,
+			);
+			name = Snap;
+			path = Classes/Snap;
 			sourceTree = "<group>";
 		};
 		783E6AD51173802100261552 /* Others */ = {
@@ -1254,6 +1293,7 @@
 				78347EDE1158D4B00073E2F0 /* WelcomeDialog.xib in Resources */,
 				78347EDF1158D4B00073E2F0 /* WhoisDialog.xib in Resources */,
 				78C2D609115A428C00705817 /* dsa_pub.pem in Resources */,
+				377630E5186F33210087964D /* script in Resources */,
 				78A8C1E511737F660044E7A1 /* README in Resources */,
 				78A8C1E711737F660044E7A1 /* COPYING in Resources */,
 				78A7B5DA11745616006B324A /* InviteSheet.xib in Resources */,
@@ -1416,6 +1456,7 @@
 				78A8C1A611737F660044E7A1 /* AppController.m in Sources */,
 				78A8C1A811737F660044E7A1 /* MenuController.m in Sources */,
 				78A8C1A911737F660044E7A1 /* NickCompletinStatus.m in Sources */,
+				377A05AD186E7D8200BC6E78 /* SnapController.m in Sources */,
 				78A8C1AA11737F660044E7A1 /* ChannelDialog.m in Sources */,
 				78A8C1AB11737F660044E7A1 /* DCCController.m in Sources */,
 				78A8C1AC11737F660044E7A1 /* DCCFileTransferCell.m in Sources */,
@@ -1468,6 +1509,7 @@
 				78A8C1DC11737F660044E7A1 /* HotKeyManager.m in Sources */,
 				78A8C1DD11737F660044E7A1 /* IconController.m in Sources */,
 				78A8C1DE11737F660044E7A1 /* InputHistory.m in Sources */,
+				377630E2186F32580087964D /* GyazoUploader.m in Sources */,
 				78A8C1DF11737F660044E7A1 /* KeyEventHandler.m in Sources */,
 				78A8C1E111737F660044E7A1 /* TCPClient.m in Sources */,
 				78A8C1E211737F660044E7A1 /* TCPServer.m in Sources */,

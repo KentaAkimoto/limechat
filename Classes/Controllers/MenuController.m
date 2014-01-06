@@ -251,6 +251,7 @@
         case 3002:	// copy address
         case 3201:	// open channel
         case 3301:	// join channel
+        case 3401:  // snap
             return YES;
     }
 
@@ -606,6 +607,17 @@
         s = [s gtm_stringByEscapingForURLArgument];
         NSString* urlStr = [NSString stringWithFormat:@"http://dic.nicovideo.jp/a/%@", s];
         [URLOpener open:[NSURL URLWithString:urlStr]];
+    }
+}
+
+- (IBAction)toggleSnap:(id)sender {
+    
+    SnapController *snapController = [SnapController sharedInstance];
+    if (snapController.isRunning) {
+        [snapController stopRecording:nil];
+    } else {
+        [snapController setup];
+        [snapController startRecording:nil];
     }
 }
 

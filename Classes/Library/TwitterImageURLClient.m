@@ -84,6 +84,10 @@ static CFStringRef CFClientDescribeCopy(void* obj)
     [self cancel];
 
     NSString* url = [NSString stringWithFormat:@"http://api.twitter.com/1/users/profile_image?size=normal&screen_name=%@", [_screenName gtm_stringByEscapingForURLArgument]];
+    
+        // 一時的に追記
+        url = @"http://riptac.net/html/memo/memo_flash/memo_flash_37/s.gif";
+    
     NSURL* urlObj = [NSURL URLWithString:url];
     if (!urlObj) {
         if ([_delegate respondsToSelector:@selector(twitterImageURLClientDidReceiveBadURL:)]) {
@@ -120,8 +124,12 @@ static CFStringRef CFClientDescribeCopy(void* obj)
         CFHTTPMessageRef reply = (CFHTTPMessageRef)CFReadStreamCopyProperty(_stream, kCFStreamPropertyHTTPResponseHeader);
         if (reply) {
             int code = CFHTTPMessageGetResponseStatusCode(reply);
-            if (300 <= code && code < 400) {
-                NSString* location = (__bridge_transfer NSString*)CFHTTPMessageCopyHeaderFieldValue(reply, CFSTR("Location"));
+//            if (300 <= code && code < 400) {
+            if (200 <= code && code < 400) {
+//                NSString* location = (__bridge_transfer NSString*)CFHTTPMessageCopyHeaderFieldValue(reply, CFSTR("Location"));
+                NSURL *locationUrl = (__bridge_transfer NSURL*)CFHTTPMessageCopyRequestURL(reply);
+                NSString* location = [locationUrl absoluteString];
+
                 if (location) {
                     if ([_delegate respondsToSelector:@selector(twitterImageURLClient:didGetImageURL:)]) {
                         [_delegate twitterImageURLClient:self didGetImageURL:location];

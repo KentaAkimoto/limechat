@@ -507,7 +507,7 @@
         [_lines addObject:line];
         return key;
     }
-
+    
     NSMutableString* s = [NSMutableString string];
     if (line.time) [s appendFormat:@"<span class=\"time\">%@</span>", logEscape(line.time)];
     if (line.place) [s appendFormat:@"<span class=\"place\">%@</span>", logEscape(line.place)];
@@ -606,7 +606,7 @@
         [attrs setObject:line.clickInfo forKey:@"clickinfo"];
         [attrs setObject:@"on_dblclick()" forKey:@"ondblclick"];
     }
-
+    
     [self writeLine:s attributes:attrs];
 
     //

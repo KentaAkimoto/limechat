@@ -72,7 +72,7 @@
 - (void)twitterImageURLClient:(TwitterImageURLClient*)sender didGetImageURL:(NSString*)imageUrl
 {
     [_connections removeObjectForKey:sender];
-
+    
     NSString* screenName = sender.screenName;
     if (screenName.length && imageUrl.length) {
         [_imageUrls setObject:imageUrl forKey:screenName];
