@@ -17,6 +17,7 @@
 #import "DCCController.h"
 #import "NotificationController.h"
 #import "WelcomeDialog.h"
+#import "GyazoUploader.h"
 
 
 @interface AppController : NSObject
