@@ -21,6 +21,7 @@
     NSFont* _logFont;
     NSFont* _inputFont;
     BOOL _changingLogFont;
+    NSMutableArray* _cameraDeviceUniquIds;
 }
 
 - (id)init
@@ -28,6 +29,7 @@
     self = [super init];
     if (self) {
         [NSBundle loadNibNamed:@"Preferences" owner:self];
+        _cameraDeviceUniquIds = [@[] mutableCopy];
     }
     return self;
 }
@@ -39,6 +41,7 @@
     [self loadHotKey];
     [self updateTranscriptFolder];
     [self updateTheme];
+    [self updateCameraDevices];
 
     _logFont = [NSFont fontWithName:[Preferences themeLogFontName] size:[Preferences themeLogFontSize]];
     _inputFont = [NSFont fontWithName:[Preferences themeInputFontName] size:[Preferences themeInputFontSize]];
@@ -453,6 +456,49 @@
 - (void)onChangedTransparency:(id)sender
 {
     [self onLayoutChanged:nil];
+}
+
+#pragma mark - Camera
+
+- (void)updateCameraDevices{
+    
+    [_cameraButton removeAllItems];
+    [_cameraDeviceUniquIds removeAllObjects];
+    
+    // 先頭の要素
+    NSMenuItem* item = [[NSMenuItem alloc] initWithTitle:@"none" action:@selector(selectCameraDevice:) keyEquivalent:@""];
+    [item setTag:0];
+    [_cameraButton.menu addItem:item];
+    _cameraDeviceUniquIds[0] = @"";
+
+    int i = 1;
+    for (QTCaptureDevice *device in [QTCaptureDevice inputDevicesWithMediaType:QTMediaTypeVideo]) {
+        
+        NSMenuItem* item = [[NSMenuItem alloc] initWithTitle:device.localizedDisplayName action:@selector(selectCameraDevice:) keyEquivalent:@""];
+        [item setTag:i];
+        [_cameraButton.menu addItem:item];
+        _cameraDeviceUniquIds[i] = device.uniqueID;
+
+        // 選択状態
+        if ([device.uniqueID isEqualToString:[Preferences cameraDeviceUniqueId]]) {
+            item.state = NSOnState;
+            [_cameraButton selectItem:item];
+        }
+        
+        i++;
+    }
+}
+
+- (void)selectCameraDevice:(NSMenuItem*)sender{
+    [Preferences setCameraDeviceUniqueId:_cameraDeviceUniquIds[sender.tag]];
+    
+    SnapController *snapController = [SnapController sharedInstance];
+    if (snapController.isRunning) {
+        [snapController stopRecording:nil];
+        [snapController setup];
+        [snapController startRecording:nil];
+    }
+
 }
 
 #pragma mark - Actions

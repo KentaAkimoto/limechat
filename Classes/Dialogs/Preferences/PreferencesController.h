@@ -3,6 +3,8 @@
 
 #import <Cocoa/Cocoa.h>
 #import "KeyRecorder.h"
+#import <QTKit/QTkit.h>
+#import "SnapController.h"
 
 
 #define ThemeDidChangeNotification	@"ThemeDidChangeNotification"
@@ -26,6 +28,7 @@
 @property (nonatomic) IBOutlet NSPopUpButton* transcriptFolderButton;
 @property (nonatomic) IBOutlet NSPopUpButton* themeButton;
 @property (nonatomic) IBOutlet NSTableView* soundsTable;
+@property (weak) IBOutlet NSPopUpButton *cameraButton;
 
 - (void)show;
 

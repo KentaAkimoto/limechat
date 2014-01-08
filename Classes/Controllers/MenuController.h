@@ -36,6 +36,7 @@
 @property (nonatomic) IBOutlet NSMenuItem* closeWindowItem;
 @property (nonatomic) IBOutlet NSMenuItem* closeCurrentPanelItem;
 @property (nonatomic) IBOutlet NSMenuItem* checkForUpdateItem;
+@property (weak) IBOutlet NSMenuItem *toggleSnapItem;
 
 - (void)setUp;
 - (void)terminate;

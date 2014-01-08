@@ -691,6 +691,7 @@
                 <outlet property="checkForUpdateItem" destination="1000" id="1009"/>
                 <outlet property="closeCurrentPanelItem" destination="820" id="824"/>
                 <outlet property="closeWindowItem" destination="723" id="823"/>
+                <outlet property="toggleSnapItem" destination="cOb-B9-nZZ" id="FaW-bf-tbd"/>
             </connections>
         </customObject>
         <customObject id="419" userLabel="SingleLineFormatter" customClass="SingleLineFormatter"/>
@@ -877,7 +878,7 @@
                         <action selector="onSearchWebNetSlang:" target="267" id="Skm-mI-ZW6"/>
                     </connections>
                 </menuItem>
-                <menuItem title="Toggle Snap" tag="3401" id="cOb-B9-nZZ">
+                <menuItem title="Turn On Camera" tag="3401" id="cOb-B9-nZZ">
                     <connections>
                         <action selector="toggleSnap:" target="267" id="e2H-EK-Wif"/>
                     </connections>

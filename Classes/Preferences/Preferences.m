@@ -299,6 +299,18 @@ static NSMutableArray* excludeWords;
     return [ud doubleForKey:@"Preferences.Theme.transparency"];
 }
 
+#pragma mark - Camera
+
++ (NSString *)cameraDeviceUniqueId{
+    NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
+    return [ud stringForKey:@"Preferences.camera.uniqueId"];
+}
+
++ (void)setCameraDeviceUniqueId:(NSString *)value{
+    NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
+    [ud setObject:value forKey:@"Preferences.camera.uniqueId"];
+}
+
 #pragma mark - DCC Ports
 
 + (int)dccFirstPort
@@ -832,6 +844,7 @@ static NSMutableArray* excludeWords;
     [d setObject:@"~/Documents/LimeChat Transcripts" forKey:@"Preferences.General.transcript_folder"];
     [d setInt:0 forKey:@"Preferences.General.hotkey_key_code"];
     [d setInt:0 forKey:@"Preferences.General.hotkey_modifier_flags"];
+    [d setObject:@"" forKey:@"Preferences.camera.uniqueId"];
 
     NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
     [ud registerDefaults:d];

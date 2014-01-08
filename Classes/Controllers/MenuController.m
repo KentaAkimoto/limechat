@@ -615,9 +615,11 @@
     SnapController *snapController = [SnapController sharedInstance];
     if (snapController.isRunning) {
         [snapController stopRecording:nil];
+        _toggleSnapItem.title = @"Turn On Camera";
     } else {
         [snapController setup];
         [snapController startRecording:nil];
+        _toggleSnapItem.title = @"Turn Off Camera";
     }
 }
 

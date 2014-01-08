@@ -58,7 +58,8 @@ static NSMutableDictionary *_instances;
 	
 // Find a video device  
     
-    QTCaptureDevice *videoDevice = [QTCaptureDevice defaultInputDeviceWithMediaType:QTMediaTypeVideo];
+//    QTCaptureDevice *videoDevice = [QTCaptureDevice defaultInputDeviceWithMediaType:QTMediaTypeVideo];
+    QTCaptureDevice *videoDevice = [QTCaptureDevice deviceWithUniqueID:[Preferences cameraDeviceUniqueId]];
     success = [videoDevice open:&error];
     
     

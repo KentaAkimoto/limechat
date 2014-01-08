@@ -7,6 +7,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="PreferencesController">
             <connections>
+                <outlet property="cameraButton" destination="qAs-Wc-ELy" id="KgX-iK-cvO"/>
                 <outlet property="excludeWordsArrayController" destination="4313" id="4334"/>
                 <outlet property="excludeWordsTable" destination="2514" id="4343"/>
                 <outlet property="hotKey" destination="879" id="4354"/>
@@ -1029,12 +1030,12 @@
                                         <popUpButton verticalHuggingPriority="750" id="4273">
                                             <rect key="frame" x="216" y="283" width="177" height="26"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <popUpButtonCell key="cell" type="push" title="Accept automatically" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="4276" id="4274">
+                                            <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="4274">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="menu"/>
                                                 <menu key="menu" title="OtherViews" id="4275">
                                                     <items>
-                                                        <menuItem title="Accept automatically" state="on" id="4276"/>
+                                                        <menuItem title="Accept automatically" id="4276"/>
                                                         <menuItem title="Show dialog" tag="1" id="4277"/>
                                                         <menuItem title="Ignore" tag="2" id="4279">
                                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -1080,8 +1081,24 @@
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
+                                        <textField verticalHuggingPriority="750" id="fUt-La-WJP">
+                                            <rect key="frame" x="15" y="62" width="45" height="14"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Camera" id="LgS-c7-Elx">
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
                                         <box autoresizesSubviews="NO" verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="4455">
                                             <rect key="frame" x="89" y="142" width="333" height="5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                                            <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <font key="titleFont" metaFont="system"/>
+                                        </box>
+                                        <box autoresizesSubviews="NO" verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="oCf-QV-Vam">
+                                            <rect key="frame" x="89" y="66" width="333" height="5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                             <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1124,6 +1141,21 @@
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
+                                        <popUpButton verticalHuggingPriority="750" id="qAs-Wc-ELy">
+                                            <rect key="frame" x="140" y="19" width="253" height="26"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="G7q-Qv-DlY" id="NwT-L4-xb6">
+                                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="menu"/>
+                                                <menu key="menu" title="OtherViews" id="GVl-hh-a4d">
+                                                    <items>
+                                                        <menuItem title="Item 1" state="on" id="G7q-Qv-DlY"/>
+                                                        <menuItem title="Item 2" id="oW6-0D-Wq3"/>
+                                                        <menuItem title="Item 3" id="hIt-y5-CqK"/>
+                                                    </items>
+                                                </menu>
+                                            </popUpButtonCell>
+                                        </popUpButton>
                                     </subviews>
                                 </view>
                             </tabViewItem>

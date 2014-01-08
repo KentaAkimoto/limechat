@@ -3,6 +3,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import <QTKit/QTkit.h>
+#import "Preferences.h"
 
 @interface SnapController : NSObject {
     

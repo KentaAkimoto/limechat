@@ -87,6 +87,8 @@ typedef enum {
 + (BOOL)themeOverrideTimestampFormat;
 + (NSString*)themeTimestampFormat;
 + (double)themeTransparency;
++ (NSString*)cameraDeviceUniqueId;
++ (void)setCameraDeviceUniqueId:(NSString*)value;
 
 + (int)dccFirstPort;
 + (void)setDccFirstPort:(int)value;
