@@ -2129,7 +2129,7 @@
     c.nickColorNumber = colorNumber;
     c.keywords = keywords;
     c.excludeWords = excludeWords;
-    c.useAvatar = type == LINE_TYPE_PRIVMSG && [[_config.userInfo lowercaseString] contains:@"showtwitteravatar"];
+    c.useAvatar = type == LINE_TYPE_PRIVMSG && [[_config.userInfo lowercaseString] contains:@"showavatar"];
 
     if (channel) {
         return [channel print:c];

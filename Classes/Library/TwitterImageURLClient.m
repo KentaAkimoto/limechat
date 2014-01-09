@@ -85,9 +85,6 @@ static CFStringRef CFClientDescribeCopy(void* obj)
 
     NSString* url = [NSString stringWithFormat:@"http://api.twitter.com/1/users/profile_image?size=normal&screen_name=%@", [_screenName gtm_stringByEscapingForURLArgument]];
     
-        // 一時的に追記
-        url = @"http://riptac.net/html/memo/memo_flash/memo_flash_37/s.gif";
-    
     NSURL* urlObj = [NSURL URLWithString:url];
     if (!urlObj) {
         if ([_delegate respondsToSelector:@selector(twitterImageURLClientDidReceiveBadURL:)]) {

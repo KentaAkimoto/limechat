@@ -514,6 +514,8 @@
     if (line.nick) {
         if (line.useAvatar && line.nickInfo) {
             NSString* screenName = line.nickInfo;
+            
+            /* TwitterAvatar は、使えなくなったのでコメントアウト
             TwitterAvatarURLManager* avatarManager = [TwitterAvatarURLManager instance];
             NSString* avatarImageURL = [avatarManager imageURLForTwitterScreenName:screenName];
             if (!avatarImageURL) {
@@ -527,7 +529,33 @@
                     [nc addObserver:self selector:@selector(twitterAvatarURLManagerDidGetImageURL:) name:TwitterAvatarURLManagerDidGetImageURLNotification object:screenName];
                 }
             }
+            */
 
+            NSString *avatarImageURL = nil;
+
+            NSString *avatarImgDir = @"/Users/Shared/limeChat";
+            NSURL *avatarImgDirUrl = [NSURL URLWithString:avatarImgDir];
+            NSError *error;
+            NSFileManager *fileManager = [NSFileManager defaultManager];
+            
+            // フォルダが存在しなければ作成する
+            BOOL isDirectory;
+            BOOL isExists = [fileManager fileExistsAtPath:avatarImgDir isDirectory:&isDirectory];
+            if (!isExists) {
+                [fileManager createDirectoryAtPath:avatarImgDir withIntermediateDirectories:YES attributes:nil error:&error];
+            }
+            
+            NSArray *list = [fileManager contentsOfDirectoryAtPath:avatarImgDir
+                                                             error:&error];
+            // ファイルやディレクトリの一覧を表示する
+            for (NSString *path in list) {
+                NSLog(@"%@", path);
+                if ([path hasPrefix:screenName]) {
+                    avatarImageURL = [NSString stringWithFormat:@"file://%@/%@",avatarImgDir,path];
+                    break;
+                }
+            }
+            
             NSString* escapedNick = tagEscape(line.nickInfo);
             if (avatarImageURL) {
                 [s appendFormat:@"<img class=\"avatar\" src=\"%@\"/>", tagEscape(avatarImageURL)];
