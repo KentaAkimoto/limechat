@@ -10,6 +10,7 @@
 
 @implementation AvatarCollector
 - (void) collect:(IRCClient *) client channel:(IRCChannel *) channel{
+    
     for (IRCUser* member in channel.members) {
         
         // 少し間隔を開けて実行する
@@ -28,10 +29,16 @@
 -(void) IRCClientSilentWhois:(id)sender getNick:(NSString *)nick realName:(NSString *)realName userName:(NSString *)userName address:(NSString *)address{
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-        NSLog([NSString stringWithFormat:@"%@ %@",nick,realName]);
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZ"];
+        NSDate* date = [NSDate date];
+        NSString* dateStr = [formatter stringFromDate:date];
+        NSLog(@"%@ %@ %@",dateStr,nick,realName);
         
         NSString *avatarImgDir = @"/Users/Shared/limeChat";
-        NSURL *avatarImgDirUrl = [NSURL URLWithString:avatarImgDir];
+        [self writeLog:avatarImgDir log:[NSString stringWithFormat:@"%@ %@ %@\n",dateStr,nick,realName]];
+
         NSError *error;
         NSFileManager *fileManager = [NSFileManager defaultManager];
         
@@ -64,11 +71,6 @@
     //[task setArguments: [NSArray arrayWithObjects: @"-c", @"cd ~/tmp; git add .; git commit -m 'Commit from NSTask'; git log > log.txt", nil]];
     [task setArguments: [NSArray arrayWithObjects: @"-c", command, nil]];
     
-    // user$ ls -la でDesktopのファイルを一覧する場合はこんな感じ
-    //  [task setCurrentDirectoryPath:[NSHomeDirectory() stringByAppendingPathComponent:@"Desktop"]];
-    //  [task setLaunchPath:@"/bin/ls"];
-    //  [task setArguments:[NSArray arrayWithObjects:@"-la", nil]];
-    
     // ここでコマンドの実行
     // コマンドが終了するのを待たずに、すぐに処理が返ってくる
     [task launch];
@@ -89,6 +91,32 @@
         NSString *strErr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         NSLog(@"ERROR:%@", strErr);
     }
+}
+
+- (void) writeLog:(NSString*)path log:(NSString*)log{
+    
+    NSString *filePath = [path stringByAppendingPathComponent:@"whois_history.log"];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if (![fileManager fileExistsAtPath:filePath]) {
+        BOOL result = [fileManager createFileAtPath:filePath
+                                           contents:[NSData data] attributes:nil];
+        if (!result) {
+            return;
+        }
+    }
+    
+    NSFileHandle *fileHandle = [NSFileHandle fileHandleForWritingAtPath:filePath];
+    if (!fileHandle) {
+        return;
+    }
+    
+    NSData *data = [NSData dataWithBytes:log.UTF8String
+                                   length:[log lengthOfBytesUsingEncoding:NSUTF8StringEncoding]];
+    [fileHandle seekToEndOfFile];
+    [fileHandle writeData:data];
+    [fileHandle synchronizeFile];
+    [fileHandle closeFile];
 }
 
 @end

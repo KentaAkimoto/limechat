@@ -14,7 +14,6 @@
 #import "TwitterAvatarURLManager.h"
 #import "LCFSystemInfo.h"
 
-
 #define BOTTOM_EPSILON          20
 #define INLINE_IMAGE_MAX_SIZE   (1024 * 1024)
 

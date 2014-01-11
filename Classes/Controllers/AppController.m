@@ -377,8 +377,10 @@
                 if ([s hasSuffix:@">>"]) {
                     result = [GyazoUploader upload:nil]; // スクリーンショットモード
                 } else {
-                    [snapController takePicture:nil]; // 写真モード
-                    result = [GyazoUploader upload:@"/Users/Shared/image.tiff"];
+                    if (![[Preferences cameraDeviceUniqueId] isEqualToString:@"none"]) {
+                        [snapController takePicture:nil]; // 写真モード
+                        result = [GyazoUploader upload:@"/Users/Shared/image.tiff"];
+                    }
                 }
                 s = [NSString stringWithFormat:@"%@ %@", s, result];
             }

@@ -469,7 +469,7 @@
     NSMenuItem* item = [[NSMenuItem alloc] initWithTitle:@"none" action:@selector(selectCameraDevice:) keyEquivalent:@""];
     [item setTag:0];
     [_cameraButton.menu addItem:item];
-    _cameraDeviceUniquIds[0] = @"";
+    _cameraDeviceUniquIds[0] = @"none";
 
     int i = 1;
     for (QTCaptureDevice *device in [QTCaptureDevice inputDevicesWithMediaType:QTMediaTypeVideo]) {

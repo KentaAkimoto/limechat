@@ -878,6 +878,9 @@
                         <action selector="onSearchWebNetSlang:" target="267" id="Skm-mI-ZW6"/>
                     </connections>
                 </menuItem>
+                <menuItem isSeparatorItem="YES" id="hT1-O5-nms">
+                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                </menuItem>
                 <menuItem title="Turn On Camera" tag="3401" id="cOb-B9-nZZ">
                     <connections>
                         <action selector="toggleSnap:" target="267" id="e2H-EK-Wif"/>
