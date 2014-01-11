@@ -18,6 +18,11 @@
 
 @class IRCWorld;
 
+@protocol IRCClientSilentWhoisDelegate <NSObject>
+
+- (void) IRCClientSilentWhois:(id)sender getNick:(NSString*)nick realName:(NSString*)realName userName:(NSString*)userName address:(NSString*)address;
+
+@end
 
 typedef enum {
     CONNECT_NORMAL,
@@ -42,6 +47,9 @@ typedef enum {
 @property (nonatomic, readonly) NSString* myAddress;
 @property (nonatomic) IRCChannel* lastSelectedChannel;
 @property (nonatomic) ServerDialog* propertyDialog;
+
+@property (nonatomic) BOOL silentWhoisMode;
+@property (nonatomic, weak) id<IRCClientSilentWhoisDelegate> delegateSilentWhois;
 
 - (void)setup:(IRCClientConfig*)seed;
 - (void)updateConfig:(IRCClientConfig*)seed;

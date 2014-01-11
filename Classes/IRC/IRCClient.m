@@ -3169,10 +3169,17 @@
 
             _inWhois = YES;
 
-            WhoisDialog* d = [self createWhoisDialogWithNick:nick username:username address:address realname:realname];
+            WhoisDialog* d = nil;
+            if (!_silentWhoisMode) {
+                d = [self createWhoisDialogWithNick:nick username:username address:address realname:realname];
+            }
             if (!d) {
                 NSString* text = [NSString stringWithFormat:@"%@ is %@ (%@@%@)", nick, realname, username, address];
                 [self printBoth:nil type:LINE_TYPE_REPLY text:text timestamp:m.timestamp];
+                
+                if (_silentWhoisMode) {
+                    [_delegateSilentWhois IRCClientSilentWhois:self getNick:nick realName:realname userName:username address:address];
+                }
             }
             break;
         }

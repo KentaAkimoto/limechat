@@ -48,6 +48,7 @@
     NSOpenPanel* _fileSendPanel;
     NSArray* _fileSendTargets;
     int _fileSendUID;
+    AvatarCollector *avatarCollector;
 }
 
 - (id)init
@@ -621,6 +622,16 @@
         [snapController startRecording:nil];
         _toggleSnapItem.title = @"Turn Off Camera";
     }
+}
+
+- (IBAction)toggleCollectAvatar:(id)sender {
+    IRCClient* u = _world.selectedClient;
+    IRCChannel* c = _world.selectedChannel;
+    if (u && c) {
+        avatarCollector = [[AvatarCollector alloc]init];
+        [avatarCollector collect:u channel:c];
+    }
+
 }
 
 - (void)onCopyLogAsHtml:(id)sender

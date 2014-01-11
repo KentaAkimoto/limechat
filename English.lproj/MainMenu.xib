@@ -883,6 +883,11 @@
                         <action selector="toggleSnap:" target="267" id="e2H-EK-Wif"/>
                     </connections>
                 </menuItem>
+                <menuItem title="Collect Avatar" tag="3401" id="oTt-0y-fGn">
+                    <connections>
+                        <action selector="toggleCollectAvatar:" target="267" id="Y4J-am-t3H"/>
+                    </connections>
+                </menuItem>
                 <menuItem isSeparatorItem="YES" id="472">
                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                 </menuItem>

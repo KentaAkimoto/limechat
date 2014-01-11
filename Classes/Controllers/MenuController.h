@@ -13,6 +13,7 @@
 #import "PasteSheet.h"
 #import "InviteSheet.h"
 #import "SnapController.h"
+#import "AvatarCollector.h"
 
 @class AppController;
 @class IRCWorld;
@@ -60,6 +61,7 @@
 - (IBAction)onSearchWebNetSlang:(id)sender;
 - (IBAction)onSearchWebNiconicoPedia:(id)sender;
 - (IBAction)toggleSnap:(id)sender;
+- (IBAction)toggleCollectAvatar:(id)sender;
 - (void)onCopyLogAsHtml:(id)sender;
 - (void)onCopyConsoleLogAsHtml:(id)sender;
 
