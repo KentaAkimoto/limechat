@@ -95,4 +95,6 @@ typedef enum {
 
 - (void)createChannelListDialog;
 
+- (void)printLogToConsole:(NSString*)text timestamp:(time_t)timestamp;
+
 @end

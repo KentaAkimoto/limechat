@@ -311,6 +311,18 @@ static NSMutableArray* excludeWords;
     [ud setObject:value forKey:@"Preferences.camera.uniqueId"];
 }
 
+#pragma mark - Speech Voice
+
++ (NSString *)speechVoiceId{
+    NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
+    return [ud stringForKey:@"Preferences.speech.voiceId"];
+}
+
++ (void)setSpeechVoiceId:(NSString *)value{
+    NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
+    [ud setObject:value forKey:@"Preferences.speech.voiceId"];
+}
+
 #pragma mark - DCC Ports
 
 + (int)dccFirstPort

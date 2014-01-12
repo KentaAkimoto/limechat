@@ -48,7 +48,6 @@
     NSOpenPanel* _fileSendPanel;
     NSArray* _fileSendTargets;
     int _fileSendUID;
-    AvatarCollector *avatarCollector;
 }
 
 - (id)init
@@ -252,8 +251,10 @@
         case 3002:	// copy address
         case 3201:	// open channel
         case 3301:	// join channel
-        case 3401:  // snap
-            return YES;
+        case 3401:  // camera
+        case 3402:  // speech
+        case 3403:  // collect avatar
+            return ![[AvatarCollector sharedInstance] isRunning];
     }
 
     return YES;
@@ -622,11 +623,24 @@
     }
 }
 
+- (IBAction)toggleSpeech:(id)sender {
+
+    SpeechController *speechController = [SpeechController sharedInstance];
+    if (speechController.running) {
+        speechController.running = NO;
+        _toggleSpeechItem.title = @"Turn On Speech";
+    } else {
+        speechController.running = YES;
+        _toggleSpeechItem.title = @"Turn Off Speech";
+    }
+    
+}
+
 - (IBAction)toggleCollectAvatar:(id)sender {
     IRCClient* u = _world.selectedClient;
     IRCChannel* c = _world.selectedChannel;
     if (u && c) {
-        avatarCollector = [[AvatarCollector alloc]init];
+        AvatarCollector *avatarCollector = [AvatarCollector sharedInstance];
         [avatarCollector collect:u channel:c];
     }
 

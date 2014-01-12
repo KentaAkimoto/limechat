@@ -533,7 +533,6 @@
             NSString *avatarImageURL = nil;
 
             NSString *avatarImgDir = @"/Users/Shared/limeChat";
-            NSURL *avatarImgDirUrl = [NSURL URLWithString:avatarImgDir];
             NSError *error;
             NSFileManager *fileManager = [NSFileManager defaultManager];
             
@@ -632,6 +631,12 @@
     if (_console && line.clickInfo) {
         [attrs setObject:line.clickInfo forKey:@"clickinfo"];
         [attrs setObject:@"on_dblclick()" forKey:@"ondblclick"];
+    }
+    
+    // speech
+    if (isText) {
+        SpeechController *speechController = [SpeechController sharedInstance];
+        [speechController speak:line.body who:line.nick];
     }
     
     [self writeLine:s attributes:attrs];

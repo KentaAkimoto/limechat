@@ -9,7 +9,7 @@
 #import "MarkedScroller.h"
 #import "ViewTheme.h"
 #import "WebViewAutoScroll.h"
-
+#import "SpeechController.h"
 
 @class IRCWorld;
 @class IRCClient;

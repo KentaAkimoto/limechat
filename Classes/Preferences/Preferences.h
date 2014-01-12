@@ -89,6 +89,8 @@ typedef enum {
 + (double)themeTransparency;
 + (NSString*)cameraDeviceUniqueId;
 + (void)setCameraDeviceUniqueId:(NSString*)value;
++ (NSString*)speechVoiceId;
++ (void)setSpeechVoiceId:(NSString*)value;
 
 + (int)dccFirstPort;
 + (void)setDccFirstPort:(int)value;

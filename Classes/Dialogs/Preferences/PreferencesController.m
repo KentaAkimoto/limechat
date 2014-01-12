@@ -22,6 +22,7 @@
     NSFont* _inputFont;
     BOOL _changingLogFont;
     NSMutableArray* _cameraDeviceUniquIds;
+    NSMutableArray* _voices;
 }
 
 - (id)init
@@ -30,6 +31,7 @@
     if (self) {
         [NSBundle loadNibNamed:@"Preferences" owner:self];
         _cameraDeviceUniquIds = [@[] mutableCopy];
+        _voices = [@[] mutableCopy];
     }
     return self;
 }
@@ -42,6 +44,7 @@
     [self updateTranscriptFolder];
     [self updateTheme];
     [self updateCameraDevices];
+    [self updateVoice];
 
     _logFont = [NSFont fontWithName:[Preferences themeLogFontName] size:[Preferences themeLogFontSize]];
     _inputFont = [NSFont fontWithName:[Preferences themeInputFontName] size:[Preferences themeInputFontSize]];
@@ -500,6 +503,39 @@
     }
 
 }
+
+#pragma mark - Speech
+- (void)updateVoice{
+    
+    [_voiceButton removeAllItems];
+    [_voices removeAllObjects];
+    
+    int i = 0;
+    for (NSString *voiceId in [NSSpeechSynthesizer availableVoices]) {
+        
+        NSString *displayVoiceName = [voiceId stringByReplacingOccurrencesOfString: @"com.apple.speech.synthesis.voice." withString:@""];
+        NSMenuItem* item = [[NSMenuItem alloc] initWithTitle:displayVoiceName action:@selector(selectVoice:) keyEquivalent:@""];
+        [item setTag:i];
+        [_voiceButton.menu addItem:item];
+        _voices[i] = voiceId;
+        
+        // 選択状態
+        if ([voiceId isEqualToString:[Preferences speechVoiceId]]) {
+            item.state = NSOnState;
+            [_voiceButton selectItem:item];
+        }
+        
+        i++;
+    }
+}
+
+- (void)selectVoice:(NSMenuItem*)sender{
+    [Preferences setSpeechVoiceId:_voices[sender.tag]];
+
+    SpeechController *speechController = [SpeechController sharedInstance];
+    [speechController setVoice:_voices[sender.tag]];
+}
+
 
 #pragma mark - Actions
 

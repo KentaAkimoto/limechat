@@ -25,7 +25,7 @@
 - (IBAction)takePicture:(id)sender;
 
 + (id) sharedInstance;
-+ (id)allocWithZone:(NSZone *)zone;
++ (id) allocWithZone:(NSZone *)zone;
 
 - (void) setup;
 - (void) stopRunning;

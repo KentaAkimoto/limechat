@@ -8,8 +8,69 @@
 
 #import "AvatarCollector.h"
 
-@implementation AvatarCollector
+@implementation AvatarCollector{
+    NSMutableArray *_targetUsers;
+}
+
+
+static NSMutableDictionary *_instances;
+
++ (id) sharedInstance {
+    __block AvatarCollector *obj;
+    @synchronized(self) {
+        if ([_instances objectForKey:NSStringFromClass(self)] == nil) {
+            obj = [[self alloc] initSharedInstance];
+        }
+    }
+    obj = [_instances objectForKey:NSStringFromClass(self)];
+    return obj;
+}
+
++ (id)allocWithZone:(NSZone *)zone {
+    @synchronized(self) {
+        if ([_instances objectForKey:NSStringFromClass(self)] == nil) {
+            id instance = [super allocWithZone:zone];
+            if (_instances == nil) {
+                _instances = [[NSMutableDictionary alloc] initWithCapacity:0];
+            }
+            [_instances setObject:instance forKey:NSStringFromClass(self)];
+            return instance;
+        }
+    }
+    return nil;
+}
+- (id)initSharedInstance {
+    self = [super init];
+    if (self) {
+        _targetUsers = [@[] mutableCopy];
+    }
+    return self;
+}
+
+- (id)init {
+    [self doesNotRecognizeSelector:_cmd]; // init を直接呼ぼうとしたらエラーを発生させる
+    return nil;
+}
+
+- (BOOL)isRunning{
+    if ([_targetUsers count] == 0) {
+        return NO;
+    }
+    return YES;
+}
+
 - (void) collect:(IRCClient *) client channel:(IRCChannel *) channel{
+    
+    if ([self isRunning]) {
+        return;
+    }
+    
+    [client printLogToConsole:[NSString stringWithFormat:@"AvatarCollector:対象チャンネル：%@ (see /Users/Shared/limeChat/whois_history.log)",channel.name] timestamp:[NSDate date].timeIntervalSince1970];
+    
+    [_targetUsers removeAllObjects];
+    for (IRCUser* member in channel.members) {
+        [_targetUsers addObject:member.nick];
+    }
     
     for (IRCUser* member in channel.members) {
         
@@ -50,11 +111,17 @@
         }
         // バッチ実行
         NSString *command = [NSString stringWithFormat:@"cd /Users/Shared/limeChat; ./get_avatar.sh %@ %@",realName,nick];
-        [self execScript:command];
+        NSString *commandResponse = [self execScript:command];
+        
+        [_targetUsers removeObject:nick];
+        
+        IRCClient *client = sender;
+        [client printLogToConsole:[NSString stringWithFormat:@"AvatarCollector:%@",commandResponse] timestamp:[NSDate date].timeIntervalSince1970];
+
     });
 }
 
-- (void)execScript:(NSString *)command
+- (NSString *)execScript:(NSString *)command
 {
     NSTask *task = [[NSTask alloc] init];
     
@@ -83,6 +150,7 @@
     {
         NSString *strOut = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         NSLog(@"%@", strOut);
+        return strOut;
     }
     
     data = [[errPipe fileHandleForReading] readDataToEndOfFile];
@@ -90,7 +158,9 @@
     {
         NSString *strErr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         NSLog(@"ERROR:%@", strErr);
+        return strErr;
     }
+    return @"";
 }
 
 - (void) writeLog:(NSString*)path log:(NSString*)log{

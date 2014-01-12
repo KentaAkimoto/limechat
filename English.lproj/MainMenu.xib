@@ -692,6 +692,7 @@
                 <outlet property="closeCurrentPanelItem" destination="820" id="824"/>
                 <outlet property="closeWindowItem" destination="723" id="823"/>
                 <outlet property="toggleSnapItem" destination="cOb-B9-nZZ" id="FaW-bf-tbd"/>
+                <outlet property="toggleSpeechItem" destination="oLF-b2-uol" id="0aG-x3-Dxe"/>
             </connections>
         </customObject>
         <customObject id="419" userLabel="SingleLineFormatter" customClass="SingleLineFormatter"/>
@@ -881,12 +882,20 @@
                 <menuItem isSeparatorItem="YES" id="hT1-O5-nms">
                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                 </menuItem>
-                <menuItem title="Turn On Camera" tag="3401" id="cOb-B9-nZZ">
+                <menuItem title="Turn On Camera" tag="3401" keyEquivalent="C" id="cOb-B9-nZZ">
+                    <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
                     <connections>
                         <action selector="toggleSnap:" target="267" id="e2H-EK-Wif"/>
                     </connections>
                 </menuItem>
-                <menuItem title="Collect Avatar" tag="3401" id="oTt-0y-fGn">
+                <menuItem title="Turn On Speech" tag="3402" keyEquivalent="S" id="oLF-b2-uol">
+                    <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
+                    <connections>
+                        <action selector="toggleSpeech:" target="267" id="RP9-qV-At0"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Collect Avatar" tag="3403" keyEquivalent="A" id="oTt-0y-fGn">
+                    <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
                     <connections>
                         <action selector="toggleCollectAvatar:" target="267" id="Y4J-am-t3H"/>
                     </connections>

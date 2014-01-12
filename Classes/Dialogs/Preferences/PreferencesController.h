@@ -5,6 +5,8 @@
 #import "KeyRecorder.h"
 #import <QTKit/QTkit.h>
 #import "SnapController.h"
+#import <AppKit/AppKit.h>
+#import "SpeechController.h"
 
 
 #define ThemeDidChangeNotification	@"ThemeDidChangeNotification"
@@ -29,6 +31,7 @@
 @property (nonatomic) IBOutlet NSPopUpButton* themeButton;
 @property (nonatomic) IBOutlet NSTableView* soundsTable;
 @property (weak) IBOutlet NSPopUpButton *cameraButton;
+@property (weak) IBOutlet NSPopUpButton *voiceButton;
 
 - (void)show;
 

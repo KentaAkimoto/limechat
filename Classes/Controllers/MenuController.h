@@ -13,6 +13,7 @@
 #import "PasteSheet.h"
 #import "InviteSheet.h"
 #import "SnapController.h"
+#import "SpeechController.h"
 #import "AvatarCollector.h"
 
 @class AppController;
@@ -38,6 +39,7 @@
 @property (nonatomic) IBOutlet NSMenuItem* closeCurrentPanelItem;
 @property (nonatomic) IBOutlet NSMenuItem* checkForUpdateItem;
 @property (weak) IBOutlet NSMenuItem *toggleSnapItem;
+@property (weak) IBOutlet NSMenuItem *toggleSpeechItem;
 
 - (void)setUp;
 - (void)terminate;
@@ -61,6 +63,7 @@
 - (IBAction)onSearchWebNetSlang:(id)sender;
 - (IBAction)onSearchWebNiconicoPedia:(id)sender;
 - (IBAction)toggleSnap:(id)sender;
+- (IBAction)toggleSpeech:(id)sender;
 - (IBAction)toggleCollectAvatar:(id)sender;
 - (void)onCopyLogAsHtml:(id)sender;
 - (void)onCopyConsoleLogAsHtml:(id)sender;

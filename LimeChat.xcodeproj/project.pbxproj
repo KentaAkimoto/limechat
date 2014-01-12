@@ -14,6 +14,8 @@
 		377A05AF186E7ED100BC6E78 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 377A05AE186E7ED100BC6E78 /* QuartzCore.framework */; };
 		377A05B1186E7ED600BC6E78 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 377A05B0186E7ED600BC6E78 /* QTKit.framework */; };
 		377F0FC4188124140017C9DF /* AvatarCollector.m in Sources */ = {isa = PBXBuildFile; fileRef = 377F0FC3188124140017C9DF /* AvatarCollector.m */; };
+		378044491882D8F800C66088 /* SpeechController.m in Sources */ = {isa = PBXBuildFile; fileRef = 378044481882D8F800C66088 /* SpeechController.m */; };
+		3780444B1882D93100C66088 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3780444A1882D93100C66088 /* AppKit.framework */; };
 		78000B561817D79D001935E2 /* LCFSystemInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 781A35CF180B8A8D009E88FC /* LCFSystemInfo.m */; };
 		780844D2134CD34B003BB84C /* ImageDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 780844D1134CD34B003BB84C /* ImageDownloadManager.m */; };
 		780844D3134CD34B003BB84C /* ImageDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 780844D1134CD34B003BB84C /* ImageDownloadManager.m */; };
@@ -368,6 +370,9 @@
 		377A05B0186E7ED600BC6E78 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = System/Library/Frameworks/QTKit.framework; sourceTree = SDKROOT; };
 		377F0FC2188124140017C9DF /* AvatarCollector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AvatarCollector.h; path = Classes/Avatar/AvatarCollector.h; sourceTree = "<group>"; };
 		377F0FC3188124140017C9DF /* AvatarCollector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AvatarCollector.m; path = Classes/Avatar/AvatarCollector.m; sourceTree = "<group>"; };
+		378044471882D8F800C66088 /* SpeechController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SpeechController.h; path = Classes/Speech/SpeechController.h; sourceTree = "<group>"; };
+		378044481882D8F800C66088 /* SpeechController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SpeechController.m; path = Classes/Speech/SpeechController.m; sourceTree = "<group>"; };
+		3780444A1882D93100C66088 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		780253C20C09525900C170D4 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = /System/Library/Frameworks/CoreServices.framework; sourceTree = "<absolute>"; };
 		780844D0134CD34B003BB84C /* ImageDownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageDownloadManager.h; sourceTree = "<group>"; };
 		780844D1134CD34B003BB84C /* ImageDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageDownloadManager.m; sourceTree = "<group>"; };
@@ -655,6 +660,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3780444B1882D93100C66088 /* AppKit.framework in Frameworks */,
 				377A05B1186E7ED600BC6E78 /* QTKit.framework in Frameworks */,
 				377A05AF186E7ED100BC6E78 /* QuartzCore.framework in Frameworks */,
 				78E572390C1C30BA00BDF7EC /* Cocoa.framework in Frameworks */,
@@ -672,6 +678,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				378044461882D8DD00C66088 /* Speech */,
 				377F0FBE188123C50017C9DF /* Avatar */,
 				377A05AA186E7D5B00BC6E78 /* Snap */,
 				78A8C0C111737F660044E7A1 /* Controllers */,
@@ -738,6 +745,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3780444A1882D93100C66088 /* AppKit.framework */,
 				377A05B0186E7ED600BC6E78 /* QTKit.framework */,
 				377A05AE186E7ED100BC6E78 /* QuartzCore.framework */,
 				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
@@ -780,6 +788,15 @@
 				377F0FC3188124140017C9DF /* AvatarCollector.m */,
 			);
 			name = Avatar;
+			sourceTree = "<group>";
+		};
+		378044461882D8DD00C66088 /* Speech */ = {
+			isa = PBXGroup;
+			children = (
+				378044471882D8F800C66088 /* SpeechController.h */,
+				378044481882D8F800C66088 /* SpeechController.m */,
+			);
+			name = Speech;
 			sourceTree = "<group>";
 		};
 		783E6AD51173802100261552 /* Others */ = {
@@ -1553,6 +1570,7 @@
 				78A8C20111737F660044E7A1 /* ListView.m in Sources */,
 				78A8C20211737F660044E7A1 /* LogController.m in Sources */,
 				78A8C20311737F660044E7A1 /* LogLine.m in Sources */,
+				378044491882D8F800C66088 /* SpeechController.m in Sources */,
 				78A8C20411737F660044E7A1 /* LogPolicy.m in Sources */,
 				78A8C20511737F660044E7A1 /* LogRenderer.m in Sources */,
 				78A8C20611737F660044E7A1 /* LogScriptEventSink.m in Sources */,

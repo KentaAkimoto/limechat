@@ -3773,4 +3773,14 @@
     return dateTimeFormatter;
 }
 
+#pragma mark - Utility Method
+
+-(void)printLogToConsole:(NSString *)text timestamp:(time_t)timestamp{
+    dispatch_async(
+       dispatch_get_main_queue(),
+       ^{
+           [self printBoth:nil type:LINE_TYPE_REPLY text:text timestamp:timestamp];
+       });
+}
+
 @end
