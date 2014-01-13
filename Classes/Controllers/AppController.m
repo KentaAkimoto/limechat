@@ -380,6 +380,7 @@
                     if (![[Preferences cameraDeviceUniqueId] isEqualToString:@"none"]) {
                         [snapController takePicture:nil]; // 写真モード
                         result = [GyazoUploader upload:@"/Users/Shared/image.tiff"];
+                        [snapController deletePicture]; // 写真ファイルを削除
                     }
                 }
                 s = [NSString stringWithFormat:@"%@ %@", s, result];

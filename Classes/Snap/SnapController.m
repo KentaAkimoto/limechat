@@ -230,6 +230,17 @@ static NSMutableDictionary *_instances;
     }
 }
 
+-(void)deletePicture{
+    NSError *error;
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    BOOL isExists = [fileManager fileExistsAtPath:@"/Users/Shared/image.tiff" isDirectory:NO];
+    if (isExists) {
+        [fileManager removeItemAtPath:@"/Users/Shared/image.tiff" error:&error];
+    }
+
+}
+
 - (NSImage *)resizeImage:(NSImage *)sourceImage width:(float)resizeWidth height:(float)resizeHeight {
     
     NSImage *resizedImage = [[NSImage alloc] initWithSize: NSMakeSize(resizeWidth, resizeHeight)];

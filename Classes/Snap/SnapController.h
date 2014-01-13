@@ -23,6 +23,7 @@
 - (IBAction)startRecording:(id)sender;
 - (IBAction)stopRecording:(id)sender;
 - (IBAction)takePicture:(id)sender;
+- (void)deletePicture;
 
 + (id) sharedInstance;
 + (id) allocWithZone:(NSZone *)zone;
