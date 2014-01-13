@@ -1,4 +1,13 @@
-# LimeChat
+# LimeChat 独自拡張版
+
+* LimeChat(https://github.com/psychs/limechat) に独自の機能拡張したもの
+* ver 2.39 がベース
+* 主な追加機能は、次のとおり
+** ネットスラング検索機能
+** スナップショット機能
+** スピーチ機能
+** アバター表示機能(ローカル画像ファイル)
+** アバター収集機能(任意のスクリプトを実行)
 
 LimeChat is an IRC client for Mac OS X.
 
@@ -8,8 +17,7 @@ LimeChat is an IRC client for Mac OS X.
 
 ## Author
 
-* Satoshi Nakagawa http://github.com/psychs
-* ##limechat on chat.freenode.net
+* Kenta Akimoto
 
 ## Thanks To
 
