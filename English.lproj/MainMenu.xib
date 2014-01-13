@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment version="1070" defaultVersion="1080" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
@@ -882,7 +882,7 @@
                 <menuItem isSeparatorItem="YES" id="hT1-O5-nms">
                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                 </menuItem>
-                <menuItem title="Turn On Camera" tag="3401" keyEquivalent="C" id="cOb-B9-nZZ">
+                <menuItem title="Turn On Snapshot" tag="3401" keyEquivalent="C" id="cOb-B9-nZZ">
                     <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
                     <connections>
                         <action selector="toggleSnap:" target="267" id="e2H-EK-Wif"/>
