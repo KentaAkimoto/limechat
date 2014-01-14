@@ -12,31 +12,33 @@
 
 ## 追加機能の使い方
 * ニコニコ大百科/ネットスラング検索機能
- -> 検索したいキーワードを選択状態で右クリック.メニューからSearch...を選択
+    * -> 検索したいキーワードを選択状態で右クリック.メニューからSearch...を選択
 * スナップショット機能(powered by Gyazo:https://github.com/gyazo/)
- -> Preference>Advanced>Snapshotにてデバイスを選択する
- -> 画面中央で右クリック(メインメニュー) > Turn on Snapshot
- -> メッセージを入力
- -> スクリーンキャプチャにしたい場合はメッセージの末尾に">>"を付ける
- -> マウスカーソルが+マークに変わるので、撮りたい範囲を指定する
+    * -> Preference>Advanced>Snapshotにてデバイスを選択する
+    * -> 画面中央で右クリック(メインメニュー) > Turn on Snapshot
+    * -> メッセージを入力
+    * -> スクリーンキャプチャにしたい場合はメッセージの末尾に">>"を付ける
+    * -> マウスカーソルが+マークに変わるので、撮りたい範囲を指定する
+    * -> アップした画像をサーバから削除したい場合は、一旦Gyazoアプリで一度アップすれば以降できるようになる
+    * -> GyazoはCGIも公開しているので、任意のサーバに移植するのも簡単にできそう
  
 * スピーチ機能
- -> macの設定>音声入力と読み上げ>システムの声>カスタマイズ から事前にスピーチさせたいvoiceをダウンロードしておく
- -> 日本語の場合は、KyokoかOtoyaのみ
- -> Preference>Advanced>voiceから選択
- -> 画面中央で右クリック(メインメニュー) > Turn on Speech
- -> メッセージを入力
- -> 日本語以外のvoiceを選択した場合でも、内部的にローマ字変換して渡しているので、それっぽく発言してくれるはず…
+    * -> macの設定>音声入力と読み上げ>システムの声>カスタマイズ から事前にスピーチさせたいvoiceをダウンロードしておく
+    * -> 日本語の場合は、KyokoかOtoyaのみ
+    * -> Preference>Advanced>voiceから選択
+    * -> 画面中央で右クリック(メインメニュー) > Turn on Speech
+    * -> メッセージを入力
+    * -> 日本語以外のvoiceを選択した場合でも、内部的にローマ字変換して渡しているので、それっぽく発言してくれるはず…
  
 * アバター表示機能(ローカル画像ファイル)
- -> Server Properties>CTCP UserInfo に showAvatar と入力
- -> /Users/Shared/limeChat フォルダ配下に、nick=realname.png の形式のファイルがある場合、nickが前方一致したものを表示する
+    * -> Server Properties>CTCP UserInfo に showAvatar と入力
+    * -> /Users/Shared/limeChat フォルダ配下に、nick=realname.png の形式のファイルがある場合、nickが前方一致したものを表示する
 * アバター収集機能(任意のスクリプトを実行)
- -> /Users/Shared/limeChat フォルダ配下に get_avatar.sh を作成する
- -> limechatにて、対象のチャンネルにjoinする
- -> 画面中央で右クリック(メインメニュー) > Collect Avatar
- -> ./get_avatar.sh realname nick の形式でスクリプトが実行される
- -> get_avatar.sh の中身は好きなように作る. /Users/Shared/limeChat フォルダ配下に画像ファイルが置かれるように.
+    * -> /Users/Shared/limeChat フォルダ配下に get_avatar.sh を作成する
+    * -> limechatにて、対象のチャンネルにjoinする
+    * -> 画面中央で右クリック(メインメニュー) > Collect Avatar
+    * -> ./get_avatar.sh realname nick の形式でスクリプトが実行される
+    * -> get_avatar.sh の中身は好きなように作る. /Users/Shared/limeChat フォルダ配下に画像ファイルが置かれるように.
 
 LimeChat is an IRC client for Mac OS X.
 
