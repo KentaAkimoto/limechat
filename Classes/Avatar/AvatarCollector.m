@@ -78,7 +78,7 @@ static NSMutableDictionary *_instances;
         double delayInSeconds = 1.0;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            client.silentWhoisMode = YES;
+            client.silentWhoisMode = YES; // whoisダイアログが表示されないようにフラグを立てる
             client.delegateSilentWhois = self;
             [client sendWhois:member.nick];
             //[u sendCommand:@"whois kenta" completeTarget:YES target:@"#test"];
@@ -117,6 +117,11 @@ static NSMutableDictionary *_instances;
         
         IRCClient *client = sender;
         [client printLogToConsole:[NSString stringWithFormat:@"AvatarCollector:%@",commandResponse] timestamp:[NSDate date].timeIntervalSince1970];
+        
+        // 全てのリクエストを処理したら、whoisダイアログが表示されるようにフラグを落とす
+        if (![self isRunning]) {
+            client.silentWhoisMode = NO; // whoisダイアログが表示されるように戻す
+        }
 
     });
 }
