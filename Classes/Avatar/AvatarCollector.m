@@ -10,6 +10,7 @@
 
 @implementation AvatarCollector{
     NSMutableArray *_targetUsers;
+    NSMutableArray *_batchTargetUsers;
 }
 
 
@@ -43,6 +44,7 @@ static NSMutableDictionary *_instances;
     self = [super init];
     if (self) {
         _targetUsers = [@[] mutableCopy];
+        _batchTargetUsers = [@[] mutableCopy];
     }
     return self;
 }
@@ -65,9 +67,10 @@ static NSMutableDictionary *_instances;
         return;
     }
     
-    [client printLogToConsole:[NSString stringWithFormat:@"AvatarCollector:対象チャンネル：%@ (see /Users/Shared/limeChat/whois_history.log)",channel.name] timestamp:[NSDate date].timeIntervalSince1970];
+    [client printLogToConsole:[NSString stringWithFormat:@"AvatarCollector:target channel：%@ (see /Users/Shared/limeChat/whois_history.log)",channel.name] timestamp:[NSDate date].timeIntervalSince1970];
     
     [_targetUsers removeAllObjects];
+    [_batchTargetUsers removeAllObjects];
     for (IRCUser* member in channel.members) {
         [_targetUsers addObject:member.nick];
     }
@@ -89,41 +92,58 @@ static NSMutableDictionary *_instances;
 
 -(void) IRCClientSilentWhois:(id)sender getNick:(NSString *)nick realName:(NSString *)realName userName:(NSString *)userName address:(NSString *)address{
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+    if ([_batchTargetUsers count] == [_targetUsers count]) {
         
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZ"];
-        NSDate* date = [NSDate date];
-        NSString* dateStr = [formatter stringFromDate:date];
-        NSLog(@"%@ %@ %@",dateStr,nick,realName);
-        
-        NSString *avatarImgDir = @"/Users/Shared/limeChat";
-        [self writeLog:avatarImgDir log:[NSString stringWithFormat:@"%@ %@ %@\n",dateStr,nick,realName]];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+            
+            for (NSDictionary *dict in _batchTargetUsers) {
+                
+                NSString *tempNick = dict[@"nick"];
+                NSString *tempRealName = dict[@"realName"];
+                
+                NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZ"];
+                NSDate* date = [NSDate date];
+                NSString* dateStr = [formatter stringFromDate:date];
+                NSLog(@"%@ %@ %@",dateStr,tempNick,tempRealName);
+                
+                NSString *avatarImgDir = @"/Users/Shared/limeChat";
+                [self writeLog:avatarImgDir log:[NSString stringWithFormat:@"%@ %@ %@\n",dateStr,tempNick,tempRealName]];
+                
+                NSError *error;
+                NSFileManager *fileManager = [NSFileManager defaultManager];
+                
+                // フォルダが存在しなければ作成する
+                BOOL isDirectory;
+                BOOL isExists = [fileManager fileExistsAtPath:avatarImgDir isDirectory:&isDirectory];
+                if (!isExists) {
+                    [fileManager createDirectoryAtPath:avatarImgDir withIntermediateDirectories:YES attributes:nil error:&error];
+                }
+                // バッチ実行
+                NSString *command = [NSString stringWithFormat:@"cd /Users/Shared/limeChat; ./get_avatar.sh %@ %@",tempRealName,tempNick];
+                NSString *commandResponse = [self execScript:command];
+                
+                [_targetUsers removeObject:tempNick];
+                
+                IRCClient *client = sender;
+                [client printLogToConsole:[NSString stringWithFormat:@"AvatarCollector:%@",commandResponse] timestamp:[NSDate date].timeIntervalSince1970];
+                
+                // 全てのリクエストを処理したら、whoisダイアログが表示されるようにフラグを落とす
+                if (![self isRunning]) {
+                    client.silentWhoisMode = NO; // whoisダイアログが表示されるように戻す
+                }
+                
+            }
+            
+        });
 
-        NSError *error;
-        NSFileManager *fileManager = [NSFileManager defaultManager];
         
-        // フォルダが存在しなければ作成する
-        BOOL isDirectory;
-        BOOL isExists = [fileManager fileExistsAtPath:avatarImgDir isDirectory:&isDirectory];
-        if (!isExists) {
-            [fileManager createDirectoryAtPath:avatarImgDir withIntermediateDirectories:YES attributes:nil error:&error];
-        }
-        // バッチ実行
-        NSString *command = [NSString stringWithFormat:@"cd /Users/Shared/limeChat; ./get_avatar.sh %@ %@",realName,nick];
-        NSString *commandResponse = [self execScript:command];
+    } else {
         
-        [_targetUsers removeObject:nick];
+        [_batchTargetUsers addObject:@{@"nick":nick,@"realName":realName}];
         
-        IRCClient *client = sender;
-        [client printLogToConsole:[NSString stringWithFormat:@"AvatarCollector:%@",commandResponse] timestamp:[NSDate date].timeIntervalSince1970];
-        
-        // 全てのリクエストを処理したら、whoisダイアログが表示されるようにフラグを落とす
-        if (![self isRunning]) {
-            client.silentWhoisMode = NO; // whoisダイアログが表示されるように戻す
-        }
-
-    });
+    }
+    
 }
 
 - (NSString *)execScript:(NSString *)command
