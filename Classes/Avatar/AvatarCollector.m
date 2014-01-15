@@ -72,10 +72,27 @@ static NSMutableDictionary *_instances;
     [_targetUsers removeAllObjects];
     [_batchTargetUsers removeAllObjects];
     for (IRCUser* member in channel.members) {
-        [_targetUsers addObject:member.nick];
+
+        BOOL existsAvatar = NO;
+        NSString *avatarImgDir = @"/Users/Shared/limeChat";
+        NSError *error;
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        NSArray *list = [fileManager contentsOfDirectoryAtPath:avatarImgDir
+                                                         error:&error];
+        // ファイルやディレクトリの一覧を表示する
+        for (NSString *path in list) {
+            if ([path hasPrefix:member.nick]) {
+                existsAvatar = YES;
+                break;
+            }
+        }
+
+        if (!existsAvatar) {
+            [_targetUsers addObject:member.nick];
+        }
     }
     
-    for (IRCUser* member in channel.members) {
+    for (NSString *nick in _targetUsers) {
         
         // 少し間隔を開けて実行する
         double delayInSeconds = 1.0;
@@ -83,7 +100,7 @@ static NSMutableDictionary *_instances;
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
             client.silentWhoisMode = YES; // whoisダイアログが表示されないようにフラグを立てる
             client.delegateSilentWhois = self;
-            [client sendWhois:member.nick];
+            [client sendWhois:nick];
             //[u sendCommand:@"whois kenta" completeTarget:YES target:@"#test"];
             
         });
