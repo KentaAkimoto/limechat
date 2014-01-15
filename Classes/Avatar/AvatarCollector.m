@@ -92,6 +92,8 @@ static NSMutableDictionary *_instances;
 
 -(void) IRCClientSilentWhois:(id)sender getNick:(NSString *)nick realName:(NSString *)realName userName:(NSString *)userName address:(NSString *)address{
     
+    [_batchTargetUsers addObject:@{@"nick":nick,@"realName":realName}];
+    
     if ([_batchTargetUsers count] == [_targetUsers count]) {
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
@@ -137,10 +139,6 @@ static NSMutableDictionary *_instances;
             
         });
 
-        
-    } else {
-        
-        [_batchTargetUsers addObject:@{@"nick":nick,@"realName":realName}];
         
     }
     
