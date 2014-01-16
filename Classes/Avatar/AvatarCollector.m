@@ -108,9 +108,24 @@ static NSMutableDictionary *_instances;
 }
 
 -(void) IRCClientSilentWhois:(id)sender getNick:(NSString *)nick realName:(NSString *)realName userName:(NSString *)userName address:(NSString *)address{
-    
-    [_batchTargetUsers addObject:@{@"nick":nick,@"realName":realName}];
-    
+
+    @synchronized (self){
+        [_batchTargetUsers addObject:@{@"nick":nick,@"realName":realName}];
+
+        NSString *avatarImgDir = @"/Users/Shared/limeChat";
+        [self writeLog:avatarImgDir fileName:@"avatar_collector.txt" log:[NSString stringWithFormat:@"%@ %@\n",nick,realName]];
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZ"];
+        NSDate* date = [NSDate date];
+        NSString* dateStr = [formatter stringFromDate:date];
+        NSLog(@"%@ %@ %@",dateStr,nick,realName);
+        
+        [self writeLog:avatarImgDir fileName:@"whois_history.log" log:[NSString stringWithFormat:@"%@ %@ %@\n",dateStr,nick,realName]];
+
+    }
+
+/*
     if ([_batchTargetUsers count] == [_targetUsers count]) {
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
@@ -127,7 +142,7 @@ static NSMutableDictionary *_instances;
                 NSLog(@"%@ %@ %@",dateStr,tempNick,tempRealName);
                 
                 NSString *avatarImgDir = @"/Users/Shared/limeChat";
-                [self writeLog:avatarImgDir log:[NSString stringWithFormat:@"%@ %@ %@\n",dateStr,tempNick,tempRealName]];
+                [self writeLog:avatarImgDir fileName:@"whois_history.log" log:[NSString stringWithFormat:@"%@ %@ %@\n",dateStr,tempNick,tempRealName]];
                 
                 NSError *error;
                 NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -158,7 +173,7 @@ static NSMutableDictionary *_instances;
 
         
     }
-    
+*/
 }
 
 - (NSString *)execScript:(NSString *)command
@@ -203,9 +218,9 @@ static NSMutableDictionary *_instances;
     return @"";
 }
 
-- (void) writeLog:(NSString*)path log:(NSString*)log{
+- (void) writeLog:(NSString*)path fileName:(NSString*)fileName log:(NSString*)log{
     
-    NSString *filePath = [path stringByAppendingPathComponent:@"whois_history.log"];
+    NSString *filePath = [path stringByAppendingPathComponent:fileName];
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
     if (![fileManager fileExistsAtPath:filePath]) {
