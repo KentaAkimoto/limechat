@@ -894,7 +894,7 @@
                         <action selector="toggleSpeech:" target="267" id="RP9-qV-At0"/>
                     </connections>
                 </menuItem>
-                <menuItem title="Collect Avatar" tag="3403" keyEquivalent="A" id="oTt-0y-fGn">
+                <menuItem title="Output Whois" tag="3403" keyEquivalent="A" id="oTt-0y-fGn">
                     <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
                     <connections>
                         <action selector="toggleCollectAvatar:" target="267" id="Y4J-am-t3H"/>
