@@ -33,7 +33,7 @@
 * アバター表示機能(ローカル画像ファイル)
     * -> Server Properties>CTCP UserInfo に showAvatar と入力
     * -> /Users/Shared/limeChat フォルダ配下に、nick=realname.png の形式のファイルがある場合、nickが前方一致したものを表示する
-* アバター収集機能(任意のスクリプトを実行)
+* アバター収集機能(収集スクリプトの入力となるwhois結果のテキストファイルを出力する)
     * -> limechatにて、対象のチャンネルにjoinする
     * -> 画面中央で右クリック(メインメニュー) > Output Whois
     * -> 収集スクリプト用の入力となるwhois結果のテキストファイルを /Users/Shared/limeChat の配下に出力する
