@@ -8,7 +8,7 @@
 * スナップショット機能(powered by Gyazo:https://github.com/gyazo/)
 * スピーチ機能
 * アバター表示機能(ローカル画像ファイル)
-* アバター収集機能(任意のスクリプトを実行)
+* アバター収集機能(収集スクリプトの入力となるwhois結果のテキストファイルを出力する)
 
 ## 追加機能の使い方
 * ニコニコ大百科/ネットスラング検索機能
@@ -34,11 +34,11 @@
     * -> Server Properties>CTCP UserInfo に showAvatar と入力
     * -> /Users/Shared/limeChat フォルダ配下に、nick=realname.png の形式のファイルがある場合、nickが前方一致したものを表示する
 * アバター収集機能(任意のスクリプトを実行)
-    * -> /Users/Shared/limeChat フォルダ配下に get_avatar.sh を作成する
     * -> limechatにて、対象のチャンネルにjoinする
-    * -> 画面中央で右クリック(メインメニュー) > Collect Avatar
-    * -> ./get_avatar.sh realname nick の形式でスクリプトが実行される
-    * -> get_avatar.sh の中身は好きなように作る. /Users/Shared/limeChat フォルダ配下に画像ファイルが置かれるように.
+    * -> 画面中央で右クリック(メインメニュー) > Output Whois
+    * -> 収集スクリプト用の入力となるwhois結果のテキストファイルを /Users/Shared/limeChat の配下に出力する
+    * -> 既にアバター画像が/Users/Shared/limeChatに存在している場合は、テキストファイルに出力されないので注意
+    * -> 収集スクリプトは、独自に作ってください…
 
 LimeChat is an IRC client for Mac OS X.
 
